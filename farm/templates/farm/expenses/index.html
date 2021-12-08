@@ -1,0 +1,57 @@
+{% extends 'farm/layout.html' %}
+{% load static %}
+{% block title %}
+All Expenses
+{% endblock title %}
+
+{% block contents %}
+
+  <section class="container">
+    <div class=" p-3">
+    </div>
+    <div class="row">
+      {%if expenses %}
+    
+     
+       <div class="col-lg-12">
+        <span class="title-1 m-b-25">Expenditure</span> <span class="float-right"><a href="{% url 'farm:create_expense' %}" class="btn btn-dark">Add Expenditure</a></span>
+                                <div class="table-responsive table--no-card m-b-40">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>Date Recorded</th>
+                                                <th>Activity</th>
+                                                <th>Investment (GH¢)</th>
+                                                <th>Manage</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody> 
+                                        {% for ex in expenses  %}
+                                                <tr>
+                                                
+                                                <td>{{ex.date |capfirst}}</td>
+                                                <td>{{ex.activity |capfirst}}</td>
+                                                <td>{{ex.investment |capfirst}}</td>
+                                                <td><span><a href="{% url 'farm:edit_expense' pk=ex.id %}"><i class="fas text-info fa-edit"></i></a></span> &emsp; <span><a href="{% url 'farm:delete_expense' pk=ex.id %}"><i class="fas text-danger fa-trash"></i></a></span></td>
+                                            
+                                            </tr>
+                                        {% endfor %}    
+                                        </tbody>
+                                    </table>
+                                </div>
+      </div>
+     
+     
+
+      {% else %}
+      <div class='text-center'>
+          <p class="display-4 ml-4 text-center text-danger">No Expenditure History</p><br>
+          
+          <a href="{% url 'farm:create_expense' %}" class="btn ml-4  btn-block text-center btn-outline-info">Add Expenditure Record</a>
+      </div>
+      {% endif %}
+    
+    </div>
+  </section>
+
+{% endblock contents  %}

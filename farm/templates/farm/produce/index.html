@@ -1,0 +1,57 @@
+{% extends 'farm/layout.html' %}
+{% load static %}
+{% block title %}
+All Pigs
+{% endblock title %}
+
+{% block contents %}
+
+  <section class="container">
+    <div class=" p-3">
+    </div>
+    <div class="row">
+      {%if produce %}     
+       <div class="col-lg-12">
+        <span class="title-1 m-b-25">All Produce</span><span class="float-right"><a href="{% url 'farm:create_produce' %}" class="btn btn-dark">Add Produce</a></span>
+
+                                <div class="table-responsive table--no-card m-b-40">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>Image</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th class="text-right">Total</th>
+                                                <th>Manage</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for prod in produce  %}
+                                                <tr>
+                                                <td> <img src="{{prod.image.url}}" width=50 height=50 alt="image" class="  img-fluid"> </td>
+                                                <td>{{prod.name |capfirst}}</td>
+                                                <td>{{prod.types |capfirst}}</td>
+                                                <td class="text-right">{{prod.total}}</td>
+                                                <td><span><a href="{% url 'farm:edit_produce' pk=prod.id %}"><i class="fas text-info fa-edit"></i></a></span> &emsp; <span><a href="{% url 'farm:delete_produce' pk=prod.id %}"><i class="fas text-danger fa-trash"></i></a></span></td>
+                                            
+                                            </tr>
+                                            
+                                          {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+      </div>
+     
+
+      {% else %}
+      <div>
+          <p class="display-4 ml-4 text-danger">Produce Database Empty</p><br>
+          
+          <a href="{% url 'farm:create_produce' %}" class="btn ml-4  btn-block text-center btn-outline-info">Add Produce</a>
+      </div>
+      {% endif %}
+    
+    </div>
+  </section>
+
+{% endblock contents  %}
