@@ -18,7 +18,7 @@ SECRET_KEY = 'django-insecure-svr#w^2xmo(p@@fc3s9_(-d4a=4a)y=y#u-9iwa$to4p2khdfg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://ninjafarmer.herokuapp.com","127.0.0.1"]
+ALLOWED_HOSTS = ['https://ninjafarmer.herokuapp.com']
 
 
 # Application definition
