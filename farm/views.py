@@ -47,11 +47,11 @@ class AccountUpdate(LoginRequiredMixin,UpdateView):
     template_name = 'farm/account.html'
     success_url = reverse_lazy('farm:dashboard')
 
-class Register(CreateView):
-    template_name = 'farm/home/signup.html'
-    form_class = RegisterForm
-    model = get_user_model()
-    success_url =  reverse_lazy('farm:login')
+# class Register(CreateView):
+#     template_name = 'farm/home/signup.html'
+#     form_class = RegisterForm
+#     model = get_user_model()
+#     success_url =  reverse_lazy('farm:login')
 
 
 class FarmNew(LoginRequiredMixin,CreateView):
